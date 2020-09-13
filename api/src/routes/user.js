@@ -8,8 +8,9 @@ var nodemailer = require('nodemailer');
 var sgTransport = require('nodemailer-sendgrid-transport'); // npm i nodemailer-sendgrid-transport
 const template = require("../../../client/src/components/EmailRegistration.jsx");
 const templateorder = require("../../../client/src/components/EmailOrder.jsx"); 
-
-
+const const {
+  SENDGRIDPASS
+} = process.env;
 
 User.generateSalt = function() {
   return crypto.randomBytes(16).toString('base64')
@@ -97,7 +98,7 @@ server.post("/adduser", (req, res) => {
             service: 'SendGrid',
             auth: {
               user: 'apikey',
-              pass: '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'
+              pass: SENDGRIDPASS
             }
           });
 
